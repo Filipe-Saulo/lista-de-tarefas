@@ -28,18 +28,15 @@ export default function App() {
   return (
     <div className="main">
       <Pesquisar />
+      <ListaTarefas />
       <CriarTarefa />
     </div>
   );
 }
 
-function ListaTarefas() {
-  return <ul></ul>;
-}
-
 function Pesquisar() {
   return (
-    <div>
+    <div className="pesquisar">
       <div>
         <h1>Pesquisar</h1>
         <input placeholder="Digite para pesquisar"></input>
@@ -67,11 +64,24 @@ function Pesquisar() {
   );
 }
 
-function ResultadoLista() {}
+function ListaTarefas() {
+  return <ul className="lista-tarefas">{<Tarefas />}</ul>;
+}
+
+function Tarefas() {
+  return (
+    <li>
+      <p>nome da tarefa</p>
+      <p>categoria</p>
+      <button>Completar</button>
+      <button>excluir</button>
+    </li>
+  );
+}
 
 function CriarTarefa() {
   return (
-    <div>
+    <div className="criar-tarefa">
       <h1>Criar Tarefa</h1>
       <input placeholder="escreva a tarefa"></input>
       <select>

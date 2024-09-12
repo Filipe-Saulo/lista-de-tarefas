@@ -4,3 +4,15 @@
   justify-content: center;
   align-items: center;
 }
+
+.pesquisar {
+  background-color: aqua;
+}
+
+.lista-tarefas {
+  background-color: blue;
+}
+
+.criar-tarefa {
+  background-color: blanchedalmond;
+}
