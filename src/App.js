@@ -65,14 +65,15 @@ function Pesquisar() {
 }
 
 function ListaTarefas() {
-  return <ul className="lista-tarefas">{<Tarefas />}</ul>;
+  const tarefas = listaInicial;
+  return <ul className="lista-tarefas">{<Tarefas tarefas={tarefas} />}</ul>;
 }
 
-function Tarefas() {
+function Tarefas({ tarefas }) {
   return (
     <li>
-      <p>nome da tarefa</p>
-      <p>categoria</p>
+      <p>{tarefas.nomeTarefa}</p>
+      <p>{tarefas.categoria}</p>
       <button>Completar</button>
       <button>excluir</button>
     </li>
