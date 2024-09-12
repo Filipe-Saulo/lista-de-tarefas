@@ -1,25 +1,85 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { index } from "./index";
 
-function App() {
+const listaInicial = [
+  {
+    id: 1,
+    nomeTarefa: "Reunião de equipe",
+    categoria: "Trabalho",
+  },
+  {
+    id: 2,
+    nomeTarefa: "Revisar anotações",
+    categoria: "Estudo",
+  },
+  {
+    id: 3,
+    nomeTarefa: "Assistir um filme",
+    categoria: "Lazer",
+  },
+  {
+    id: 4,
+    nomeTarefa: "Corrida no parque",
+    categoria: "Exercícios físicos",
+  },
+];
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <Pesquisar />
+      <CriarTarefa />
     </div>
   );
 }
 
-export default App;
+function ListaTarefas() {
+  return <ul></ul>;
+}
+
+function Pesquisar() {
+  return (
+    <div>
+      <div>
+        <h1>Pesquisar</h1>
+        <input placeholder="Digite para pesquisar"></input>
+      </div>
+      <div>
+        <div>
+          <h1>Filtrar</h1>
+          <label>status:</label>
+          <select>
+            <option>Todas</option>
+            <option>Trabalho</option>
+            <option>Estudo</option>
+            <option>Lazer</option>
+            <option>Exercicios Fisicos</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Ordem alfabetica</label>
+          <button>crescente</button>
+          <button>Decrescente</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ResultadoLista() {}
+
+function CriarTarefa() {
+  return (
+    <div>
+      <h1>Criar Tarefa</h1>
+      <input placeholder="escreva a tarefa"></input>
+      <select>
+        <option>Trabalho</option>
+        <option>Estudo</option>
+        <option>Lazer</option>
+        <option>Exercicios Fisicos</option>
+      </select>
+    </div>
+  );
+}
