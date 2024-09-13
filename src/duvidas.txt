@@ -6,63 +6,38 @@ const listaInicial = [
     id: 1,
     nomeTarefa: "Reunião de equipe",
     categoria: "Trabalho",
-    completado: true,
   },
   {
     id: 2,
     nomeTarefa: "Revisar anotações",
     categoria: "Estudo",
-    completado: true,
   },
   {
     id: 3,
     nomeTarefa: "Assistir um filme",
     categoria: "Lazer",
-    completado: true,
   },
   {
     id: 4,
     nomeTarefa: "Corrida no parque",
     categoria: "Exercícios físicos",
-    completado: true,
   },
 ];
 
 export default function App() {
-  const [tarefas, setTarefas] = useState(listaInicial);
+  const [tarefas, setTarefas] = useState([]);
   // const tarefas = listaInicial;
 
-  //adicionar
-  function adicionarTarefas(novaTarefa) {
-    setTarefas((tarefasAtuais) => [...tarefasAtuais, novaTarefa]); // Corrigido
-  }
-  //deletar
-  function deletarTarefa(id) {
-    setTarefas((tarefasAtuais) =>
-      tarefasAtuais.filter((tarefaAtual) => tarefaAtual.id != id)
-    );
-  }
-
-  //verificar domingo
-  function completarTarefa(id) {
-    console.log("chegou");
-    setTarefas((tarefasAtuais) =>
-      tarefasAtuais.map((tarefaAtual) =>
-        tarefaAtual === id
-          ? { ...tarefaAtual, completado: !tarefaAtual.completado }
-          : tarefaAtual
-      )
-    );
+  function adicionarTarefas({ t }) {
+    console.log("aquiii");
+    setTarefas({ ...tarefas, t });
+    console.log(tarefas);
   }
 
   return (
     <div className="main">
       <Pesquisar />
-      <ListaTarefas
-        tarefas={tarefas}
-        onDeletarTarefa={deletarTarefa}
-        onCompletarTarefa={completarTarefa}
-      />
+      <ListaTarefas tarefas={tarefas} />
       <CriarTarefa onAdicionarTarefas={adicionarTarefas} />
     </div>
   );
@@ -98,49 +73,38 @@ function Pesquisar() {
   );
 }
 
-function ListaTarefas({ tarefas, onDeletarTarefa, onCompletarTarefa }) {
+function ListaTarefas({ tarefas }) {
   return (
     <div className="lista-tarefas">
       <ul>
         {tarefas.map((tarefa) => (
-          <Tarefas
-            onCompletarTarefa={onCompletarTarefa}
-            onDeletarTarefa={onDeletarTarefa}
-            tarefa={tarefa}
-            key={tarefa.id}
-          />
+          <Tarefas tarefa={tarefa} key={tarefa.id} />
         ))}
       </ul>
     </div>
   );
 }
 
-function Tarefas({ tarefa, onDeletarTarefa, onCompletarTarefa }) {
+function Tarefas({ tarefa }) {
   return (
     <li>
       <p>{tarefa.nomeTarefa}</p>
       <p>{tarefa.categoria}</p>
-      <button onClick={() => onCompletarTarefa(tarefa.id)}>Completar</button>
-      <button onClick={() => onDeletarTarefa(tarefa.id)}>fechar</button>
+      <button>Completar</button>
+      <button>fechar</button>
     </li>
   );
 }
 
 function CriarTarefa({ onAdicionarTarefas }) {
   const [nomeTarefa, setNomeTarefa] = useState("");
-  const [categoria, setCategaoria] = useState("Trabalho");
-  const completado = false;
+  const [categoria, setCategaoria] = useState("");
 
   function adicionarTarefasSubmit(e) {
     e.preventDefault();
-    if (!nomeTarefa || !categoria) return;
-    const id = crypto.randomUUID();
-    const novaTarefa = { id, nomeTarefa, categoria, completado };
+    const novaTarefa = { nomeTarefa, categoria };
 
     onAdicionarTarefas(novaTarefa);
-
-    setNomeTarefa("");
-    setCategaoria("");
   }
 
   return (

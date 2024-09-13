@@ -1,4 +1,6 @@
 .main {
+  /* min-width: 80%;
+  min-height: 80%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,12 +9,15 @@
 
 .pesquisar {
   background-color: aqua;
+  min-width: 33%;
 }
 
 .lista-tarefas {
-  background-color: blue;
+  background-color: rgb(194, 194, 255);
+  min-width: 33%;
 }
 
 .criar-tarefa {
   background-color: blanchedalmond;
+  min-width: 33%;
 }
