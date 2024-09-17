@@ -1,3 +1,5 @@
+//acredito que o que eu estou tentando fazer, ele ira me ensinar mais pra frente no curso, então amanha continuar video aulas
+
 import { useState, useEffect } from "react";
 
 const listaInicial = [
@@ -30,6 +32,7 @@ const listaInicial = [
 export default function App() {
   const [tarefas, setTarefas] = useState(listaInicial);
   //adicionar mais um state para que ele guarde
+  const [bkpTarefas, setBkpTarefas] = useState(listaInicial);
   const [sortBy, setSortBy] = useState("crescente");
 
   //verifica por categoria
@@ -40,7 +43,10 @@ export default function App() {
       sortBy === "lazer" ||
       sortBy === "exercicios"
     ) {
-      const listaFiltrada = tarefas.filter(
+      setBkpTarefas(tarefas);
+      console.log(tarefas);
+      console.log(bkpTarefas);
+      const listaFiltrada = bkpTarefas.filter(
         (tarefaAtual) =>
           tarefaAtual.categoria.toLowerCase() === sortBy.toLowerCase()
       );
